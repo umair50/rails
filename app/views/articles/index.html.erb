@@ -1,0 +1,43 @@
+<%= link_to 'New article', new_article_path %>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>User name</th>
+      <th>Actions</th>
+      <th colspan="2"></th>
+
+
+    </tr>
+
+    </thead>
+    <tbody>
+    <%  @abc.each do |article| %>
+
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.text %></td>
+          <% user=User.find_by_id(article.user_id) %>
+          <% if user.present? %>
+              <td><%= user.user_name %></td>
+              <%else %>
+              <td>  </td>
+          <% end %>
+          <td><%= link_to 'Show', article_path(article) %></td>
+          <td><%= link_to 'Edit', edit_article_path(article) %></td>
+          <td><%= link_to 'Destroy', article_path(article),
+                          method: :get,
+                          data:   { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+    <div id="task-form" style="display:none;"> <%= link_to 'New Task', new_article_path, remote: true %></div>
+
+
+
+  </table>
+<%= paginate @abc %>
+</div>

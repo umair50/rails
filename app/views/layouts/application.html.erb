@@ -1,0 +1,12 @@
+<%= render "layouts/header.html.erb" %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% if user_signed_in? %>
+    <div>Signed in as... <%= current_user.email %></div>
+    <%= link_to 'My Blog', controller: 'articles' %>
+    <%= link_to 'logout', destroy_user_session_path, :method => :get %>
+<% end %>
+
+
+<%= yield %>
+<%= render "layouts/footer.html.erb" %>

@@ -1,0 +1,25 @@
+<!--
+<p>
+  <%= current_user.user_name %>
+</p>
+!-->
+<% user=User.find_by_id(comment.user_id) %>
+<% if user.present? %>
+    <td><%= user.user_name %></td>
+<%else %>
+    <td>  </td>
+<% end %>
+
+
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+<p>
+  <%= link_to 'Delete Comment',
+              article_comment_path(@article, comment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+
+</p>
